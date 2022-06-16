@@ -6,6 +6,7 @@ import { Footer } from "./subComponents/Footer";
 import { Header } from "./subComponents/Header";
 import { FeatureMovie } from "./subComponents/FeatureMovie";
 import { Loading } from "./subComponents/Loading";
+import PropTypes from 'prop-types';
 
 export class Home extends React.Component {
   state = {
@@ -45,6 +46,10 @@ export class Home extends React.Component {
     let finalChosenMoviesWithAllInfos = await getMovieInfo(chosenMovie.id, 'tv');
     this.setState({ movies: list, feature: finalChosenMoviesWithAllInfos });
   }
+  viewProfile = () => {
+    this.props.history.push('/profile')
+    document.location.reload(true);
+  };
 
   render() {
     const { user: { name, image }, movies, bgHeader, feature, loading } = this.state;
@@ -53,7 +58,7 @@ export class Home extends React.Component {
         {loading ? <Loading /> : (
           <>
             <div>
-              <Header name={name} image={image} bgHeader={bgHeader} />
+              <Header name={name} image={image} bgHeader={bgHeader} viewProfile={ this.viewProfile } />
             </div>
             <div>
                 {feature && <FeatureMovie feature={feature} />}
@@ -71,4 +76,10 @@ export class Home extends React.Component {
       </>
     )
   }
+}
+
+Home.propTypes =  {
+  history: PropTypes.shape(() => ({
+    push: PropTypes.func.isRequired,
+  }))
 }

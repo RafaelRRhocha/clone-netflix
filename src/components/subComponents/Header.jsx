@@ -7,10 +7,8 @@ import { MagnifyingGlass } from "phosphor-react";
 import { readUser } from "../../services/userApi";
 
 export class Header extends React.Component {
-  viewProfile = () => this.props.history.push('/profile');
-
   render() {
-    const { name, bgHeader } = this.props;
+    const { name, bgHeader, viewProfile } = this.props;
     const user = readUser();
     const allClass = "fixed z-50 top-0 left-0 right-0 h-[70px] flex justify-between";
     const allClassWithBg = "fixed z-50 top-0 left-0 right-0 h-[70px] flex justify-between changeBg";
@@ -23,7 +21,7 @@ export class Header extends React.Component {
             <MagnifyingGlass size={20} className="hover:cursor-pointer text-zinc-100"/>
           </div>
         )}
-        <div onClick={ this.viewProfile } className="flex gap-4 items-center mr-[40px]">
+        <div onClick={ viewProfile } className="flex gap-4 items-center mr-[40px]">
           <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[45px] h-[45px] rounded-sm hover:cursor-pointer" />
           {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{name}</p>}
         </div>
@@ -35,7 +33,5 @@ export class Header extends React.Component {
 Header.propTypes =  {
   name: PropTypes.string.isRequired,
   bgHeader: PropTypes.bool.isRequired,
-  history: PropTypes.shape(() => ({
-    push: PropTypes.func.isRequired,
-  }))
+  viewProfile: PropTypes.func.isRequired,
 };

@@ -21,12 +21,16 @@ export class ProfileEdit extends React.Component {
     this.setState({ user: updateUser });
   };
 
-  setBack = () => this.props.history.push('/profile');
+  setBack = () => {
+    this.props.history.push('/profile');
+    document.location.reload(true);
+  };
 
   saveProfile = () => {
     const { user, profileImage } = this.state;
     saveUser({ name: user.name, endEmail: user.endEmail, profile: profileImage });
     this.props.history.push('/home');
+    document.location.reload(true);
   }
 
   render() {
@@ -37,7 +41,7 @@ export class ProfileEdit extends React.Component {
       <>
         <div className="text-zinc-100 flex justify-center mt-[15%]">
           <div className="flex">
-            {!user.profile ? userProfileImageStorage : userProfileImageNoStorage}
+            {!user.profile ? userProfileImageNoStorage : userProfileImageStorage}
             <div className="flex flex-col gap-2 ml-4">
               <p>{`Nome de Usuário: ${user.name}`}</p>
               <p>{`Endereço de Email: ${user.endEmail}`}</p>

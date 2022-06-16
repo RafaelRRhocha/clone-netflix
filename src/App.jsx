@@ -11,7 +11,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
-      <Route path="/home" component={ Home } />
+      <Route path="/home" render={ (props) => <Home { ...props } /> } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/profile/edit" component={ ProfileEdit } />
       <Route path="*" component={ NotFound } />
