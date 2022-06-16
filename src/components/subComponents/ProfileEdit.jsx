@@ -21,12 +21,12 @@ export class ProfileEdit extends React.Component {
     this.setState({ user: updateUser });
   };
 
-  setBack = () => this.props.history.push('/home');
+  setBack = () => this.props.history.push('/profile');
 
   saveProfile = () => {
     const { user, profileImage } = this.state;
     saveUser({ name: user.name, endEmail: user.endEmail, profile: profileImage });
-    this.props.history.push('/profile');
+    this.props.history.push('/home');
   }
 
   render() {

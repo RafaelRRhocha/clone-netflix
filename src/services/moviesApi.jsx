@@ -1,4 +1,4 @@
-const apiKey = 'c1f84317188811403e71da72d6846bc6';
+const apiKey = '69a480634b52325843cf1f94589a0786';
 const apiBase = 'https://api.themoviedb.org/3';
 
 const fetchMovieApi = async (query) => {
