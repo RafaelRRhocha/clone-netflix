@@ -1,15 +1,21 @@
 import { NOME } from '../actions/actions';
 
 const INITIAL_STATE = {
-  nome: '',
-  email: '',
-  cpf: '',
-  endereco: '',
-  cidade: '',
-  estado: '',
-  curriculo: '',
-  cargo: '',
-  descricao: '',
+  login: {
+    login: '',
+    email: '',
+  },
+  home: {
+    user: {},
+    movies: [],
+    bgHeader: false,
+    feature: null,
+    loading: false,
+  },
+  profileEdit: {
+    user: {},
+    profileImage: '',
+  },
 };
 
 const reducers = (state = INITIAL_STATE, action) => {
