@@ -1,11 +1,11 @@
 import React from "react"
 import { readUser } from "../services/userApi";
 import { getHomeList, getMovieInfo } from "../services/moviesApi";
-import { MovieList } from "./subComponents/MovieList";
-import { Footer } from "./subComponents/Footer";
-import { Header } from "./subComponents/Header";
-import { FeatureMovie } from "./subComponents/FeatureMovie";
-import { Loading } from "./subComponents/Loading";
+import { MovieList } from "./MovieList";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { FeatureMovie } from "./FeatureMovie";
+import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
 
 export class Home extends React.Component {

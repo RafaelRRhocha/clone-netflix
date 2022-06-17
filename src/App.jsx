@@ -5,7 +5,7 @@ import { Home } from './components/Home';
 import { NotFound } from './components/NotFound';
 import './App.css'
 import { Profile } from './components/Profile';
-import { ProfileEdit } from './components/subComponents/ProfileEdit';
+import { ProfileEdit } from './components/ProfileEdit';
 
 function App() {
   return (

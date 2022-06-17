@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import logo from '../../assets/netflix-icon-main.png';
-import profile from '../../assets/profileImage.png';
-import '../../css/Main.css';
+import logo from '../assets/netflix-icon-main.png';
+import profile from '../assets/profileImage.png';
+import '../css/Main.css';
 import { MagnifyingGlass } from "phosphor-react";
-import { readUser } from "../../services/userApi";
+import { readUser } from "../services/userApi";
 
 export class Header extends React.Component {
   render() {

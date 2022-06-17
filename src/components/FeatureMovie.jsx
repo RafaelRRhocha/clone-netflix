@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../css/Main.css';
-import imdb from '../../assets/imdbIcon.png'
+import '../css/Main.css';
+import imdb from '../assets/imdbIcon.png'
 
 export class FeatureMovie extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { CaretLeft, CaretRight, PlayCircle } from "phosphor-react";
-import "../../css/Main.css"
+import "../css/Main.css"
 
 export class MovieList extends React.Component {
   state = {

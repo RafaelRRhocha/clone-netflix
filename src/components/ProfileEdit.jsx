@@ -1,6 +1,6 @@
 import React from 'react';
-import { readUser, saveUser } from '../../services/userApi';
-import profile from '../../assets/profileImage.png';
+import { readUser, saveUser } from '../services/userApi';
+import profile from '../assets/profileImage.png';
 import PropTypes from 'prop-types';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
 
