@@ -1,5 +1,4 @@
-import React from "react"
-import { readUser } from "../services/userApi";
+import React from "react";
 import { getHomeList, getMovieInfo } from "../services/moviesApi";
 import { MovieList } from "./MovieList";
 import { Footer } from "./Footer";
@@ -10,7 +9,6 @@ import PropTypes from 'prop-types';
 
 export class Home extends React.Component {
   state = {
-    user: {},
     movies: [],
     bgHeader: false,
     feature: null,
@@ -18,7 +16,6 @@ export class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.getUserState();
     this.loadAll();
     this.setLoading();
     window.addEventListener('scroll', () => {
@@ -33,11 +30,6 @@ export class Home extends React.Component {
     this.setState({loading: false});
   };
 
-  getUserState = () => {
-    const updateUser = readUser();
-    this.setState({ user: updateUser });
-  };
-
   loadAll = async () => {
     let list = await getHomeList();
     let featureFilter = list.filter((item) => item.slug === 'trending');
@@ -46,19 +38,20 @@ export class Home extends React.Component {
     let finalChosenMoviesWithAllInfos = await getMovieInfo(chosenMovie.id, 'tv');
     this.setState({ movies: list, feature: finalChosenMoviesWithAllInfos });
   }
+
   viewProfile = () => {
-    this.props.history.push('/profile')
+    this.props.history.push('/profile');
     document.location.reload(true);
   };
 
   render() {
-    const { user: { name, image }, movies, bgHeader, feature, loading } = this.state;
+    const { movies, bgHeader, feature, loading } = this.state;
     return (
       <>
         {loading ? <Loading /> : (
           <>
             <div>
-              <Header name={name} image={image} bgHeader={bgHeader} viewProfile={ this.viewProfile } />
+              <Header bgHeader={bgHeader} viewProfile={ this.viewProfile } />
             </div>
             <div>
                 {feature && <FeatureMovie feature={feature} />}

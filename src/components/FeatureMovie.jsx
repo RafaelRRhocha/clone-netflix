@@ -38,5 +38,5 @@ export class FeatureMovie extends React.Component {
 }
 
 FeatureMovie.propTypes =  {
-  feature: PropTypes.objectOf.isRequired,
+  feature: PropTypes.func.isRequired,
 }

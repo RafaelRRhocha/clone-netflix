@@ -62,5 +62,5 @@ export class MovieList extends React.Component {
 
 MovieList.propTypes =  {
   title: PropTypes.string.isRequired,
-  items: PropTypes.func.isRequired,
+  items: PropTypes.objectOf.isRequired,
 };

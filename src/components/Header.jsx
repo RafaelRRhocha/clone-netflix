@@ -8,7 +8,7 @@ import { readUser } from "../services/userApi";
 
 export class Header extends React.Component {
   render() {
-    const { name, bgHeader, viewProfile } = this.props;
+    const { bgHeader, viewProfile } = this.props;
     const user = readUser();
     const allClass = "fixed z-50 top-0 left-0 right-0 h-[70px] flex justify-between";
     const allClassWithBg = "fixed z-50 top-0 left-0 right-0 h-[70px] flex justify-between changeBg";
@@ -23,7 +23,7 @@ export class Header extends React.Component {
         )}
         <div onClick={ viewProfile } className="flex gap-4 items-center mr-[40px]">
           <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[45px] h-[45px] rounded-sm hover:cursor-pointer" />
-          {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{name}</p>}
+          {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{user.name}</p>}
         </div>
     </header>
     )
