@@ -6,16 +6,19 @@ import { NotFound } from './components/NotFound';
 import './App.css'
 import { Profile } from './components/Profile';
 import { ProfileEdit } from './components/ProfileEdit';
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <Switch>
-      <Route exact path="/" component={ Login } />
-      <Route path="/home" component={ Home } />
-      <Route exact path="/profile" component={ Profile } />
-      <Route path="/profile/edit" component={ ProfileEdit } />
-      <Route path="*" component={ NotFound } />
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        <Route path="/home" component={ Home } />
+        <Route exact path="/profile" component={ Profile } />
+        <Route path="/profile/edit" component={ ProfileEdit } />
+        <Route path="*" component={ NotFound } />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
