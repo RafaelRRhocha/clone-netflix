@@ -49,6 +49,11 @@ export const getHomeList = async () => {
       items: await fetchMovieApi(`/discover/movie?with_genres=18&language=pt-BR&api_key=${apiKey}`),
     },
     {
+      slug: 'animation',
+      title: 'Animação',
+      items: await fetchMovieApi(`/discover/movie?with_genres=16&language=pt-BR&api_key=${apiKey}`),
+    },
+    {
       slug: 'mistery',
       title: 'Mistério',
       items: await fetchMovieApi(`/discover/movie?with_genres=9648&language=pt-BR&api_key=${apiKey}`),

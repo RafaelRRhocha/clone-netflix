@@ -36,6 +36,7 @@ export class Home extends React.Component {
     let randomFeatureMovie = Math.floor(Math.random() * (featureFilter[0].items.results.length - 1));
     let chosenMovie = featureFilter[0].items.results[randomFeatureMovie];
     let finalChosenMoviesWithAllInfos = await getMovieInfo(chosenMovie.id, 'tv');
+    console.log(finalChosenMoviesWithAllInfos);
     this.setState({ movies: list, feature: finalChosenMoviesWithAllInfos });
   }
 
