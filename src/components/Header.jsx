@@ -7,6 +7,9 @@ import { MagnifyingGlass } from "phosphor-react";
 import { readUser } from "../services/userApi";
 
 export class Header extends React.Component {
+
+  tecMain = () => alert('Em Manutenção!');
+
   render() {
     const { bgHeader, viewProfile } = this.props;
     const user = readUser();
@@ -18,7 +21,7 @@ export class Header extends React.Component {
         {bgHeader && (
           <div className="flex gap-2 items-center">
             <input type="text" placeholder="Digite o Nome do Filme" className="h-6 w-[300px] text-zinc-800 p-1" />
-            <MagnifyingGlass size={20} className="hover:cursor-pointer text-zinc-100"/>
+            <MagnifyingGlass size={20} onClick={ this.tecMain } className="hover:cursor-pointer text-zinc-100"/>
           </div>
         )}
         <div onClick={ viewProfile } className="flex gap-4 items-center mr-[40px]">
