@@ -20,7 +20,7 @@ export class Header extends React.Component {
         <img src={logo} alt="imagem de perfil" className="ml-[30px]"/>
         {bgHeader && (
           <div className="flex gap-2 items-center">
-            <input type="text" placeholder="Digite o Nome do Filme" className="h-6 w-[300px] text-zinc-800 p-1" />
+            <input type="text" placeholder="Buscar" className="h-6 w-[300px] text-zinc-800 p-1" />
             <MagnifyingGlass size={20} onClick={ this.tecMain } className="hover:cursor-pointer text-zinc-100"/>
           </div>
         )}
