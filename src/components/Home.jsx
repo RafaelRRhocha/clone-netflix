@@ -1,3 +1,4 @@
+// comment
 import React from "react";
 import { getHomeList, getMovieInfo } from "../services/moviesApi";
 import { MovieList } from "./MovieList";
