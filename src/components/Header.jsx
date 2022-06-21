@@ -5,7 +5,6 @@ import profile from '../assets/profileImage.png';
 import '../css/Main.css';
 import { MagnifyingGlass } from "phosphor-react";
 import { readUser } from "../services/userApi";
-import { Link } from "react-router-dom";
 
 export class Header extends React.Component {
 
@@ -25,12 +24,10 @@ export class Header extends React.Component {
             <MagnifyingGlass size={20} onClick={ this.tecMain } className="hover:cursor-pointer text-zinc-100"/>
           </div>
         )}
-        <Link to="/profile">
-          <div onClick={ viewProfile } className="flex gap-4 items-center mr-[40px]">
-            <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[45px] h-[45px] rounded-sm hover:cursor-pointer" />
-            {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{user.name}</p>}
-          </div>
-        </Link>
+        <div onClick={ viewProfile } className="flex gap-4 items-center mr-[40px]">
+          <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[45px] h-[45px] rounded-sm hover:cursor-pointer" />
+          {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{user.name}</p>}
+        </div>
     </header>
     )
   }
