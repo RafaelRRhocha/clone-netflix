@@ -40,8 +40,8 @@ export class Home extends React.Component {
   }
 
   viewProfile = () => {
-    this.props.history.push('/profile');
-    document.location.reload(true);
+    const reload = () => document.location.reload(true);
+    return setTimeout(reload, 500);
   };
 
   render() {
