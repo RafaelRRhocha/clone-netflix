@@ -6,8 +6,9 @@ import { Header } from "./Header";
 import { FeatureMovie } from "./FeatureMovie";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router-dom";
 
-export class Home extends React.Component {
+class Home extends React.Component {
   state = {
     movies: [],
     bgHeader: false,
@@ -76,3 +77,5 @@ Home.propTypes =  {
     push: PropTypes.func.isRequired,
   }))
 }
+
+export default withRouter(Home);

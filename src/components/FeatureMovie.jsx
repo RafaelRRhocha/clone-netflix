@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/Main.css';
 import imdb from '../assets/imdbIcon.png'
+import { withRouter } from 'react-router-dom';
 
-export class FeatureMovie extends React.Component {
+class FeatureMovie extends React.Component {
   render() {
     const { feature } = this.props;
     const genres = [];
@@ -40,3 +41,5 @@ export class FeatureMovie extends React.Component {
 FeatureMovie.propTypes =  {
   feature: PropTypes.func.isRequired,
 }
+
+export default withRouter(FeatureMovie);

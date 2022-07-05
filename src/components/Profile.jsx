@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { readUser } from '../services/userApi';
 import profileImageInitial from '../assets/profileImage.png';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
+import { withRouter } from 'react-router-dom';
 
-export class Profile extends React.Component {
+class Profile extends React.Component {
   setBack = () => this.props.history.push('/home');
 
   setProfileEdit = () => this.props.history.push('/profile/edit');
@@ -36,3 +37,5 @@ Profile.propTypes =  {
     push: PropTypes.func.isRequired,
   }))
 }
+
+export default withRouter(Profile);

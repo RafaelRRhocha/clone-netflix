@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import '../css/Main.css';
 import logo from '../assets/netflix-icon.svg';
 import { saveUser } from "../services/userApi";
+import { withRouter } from "react-router-dom";
 
-export class Login extends React.Component {
+class Login extends React.Component {
   state = {
     login: '',
     email: '',
@@ -52,3 +53,5 @@ Login.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
 }
+
+export default withRouter(Login);

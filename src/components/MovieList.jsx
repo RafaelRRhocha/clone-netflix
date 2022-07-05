@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { CaretLeft, CaretRight, PlayCircle } from "phosphor-react";
 import "../css/Main.css"
+import { withRouter } from "react-router-dom";
 
-export class MovieList extends React.Component {
+class MovieList extends React.Component {
   state = {
     changeMovies: 0,
   }
@@ -64,3 +65,5 @@ MovieList.propTypes =  {
   title: PropTypes.string.isRequired,
   items: PropTypes.objectOf.isRequired,
 };
+
+export default withRouter(MovieList);
