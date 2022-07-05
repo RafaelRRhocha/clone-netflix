@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import '../css/Main.css';
 import logo from '../assets/netflix-icon.svg';
 import { saveUser } from "../services/userApi";
-import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
@@ -54,4 +53,4 @@ Login.propTypes = {
   }).isRequired,
 }
 
-export default withRouter(Login);
+export default Login;

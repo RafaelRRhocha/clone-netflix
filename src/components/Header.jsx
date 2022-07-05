@@ -5,7 +5,6 @@ import profile from '../assets/profileImage.png';
 import '../css/Main.css';
 import { MagnifyingGlass } from "phosphor-react";
 import { readUser } from "../services/userApi";
-import { withRouter } from "react-router-dom";
 
 class Header extends React.Component {
 
@@ -40,4 +39,4 @@ Header.propTypes =  {
   viewProfile: PropTypes.func.isRequired,
 };
 
-export default withRouter(Header);
+export default Header;

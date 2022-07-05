@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/Main.css';
 import imdb from '../assets/imdbIcon.png'
-import { withRouter } from 'react-router-dom';
 
 class FeatureMovie extends React.Component {
   render() {
@@ -42,4 +41,4 @@ FeatureMovie.propTypes =  {
   feature: PropTypes.func.isRequired,
 }
 
-export default withRouter(FeatureMovie);
+export default FeatureMovie;

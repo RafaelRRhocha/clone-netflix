@@ -67,4 +67,4 @@ ProfileEdit.propTypes =  {
   }))
 }
 
-export default withRouter(ProfileEdit);
+export default ProfileEdit;

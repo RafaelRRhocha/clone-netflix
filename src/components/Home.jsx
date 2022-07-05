@@ -6,7 +6,6 @@ import { Header } from "./Header";
 import { FeatureMovie } from "./FeatureMovie";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
-import { withRouter } from "react-router-dom";
 
 class Home extends React.Component {
   state = {
@@ -78,4 +77,4 @@ Home.propTypes =  {
   }))
 }
 
-export default withRouter(Home);
+export default Home;
