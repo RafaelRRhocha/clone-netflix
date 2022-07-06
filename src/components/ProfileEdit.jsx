@@ -3,7 +3,6 @@ import { readUser, saveUser } from '../services/userApi';
 import profile from '../assets/profileImage.png';
 import PropTypes from 'prop-types';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
-import { withRouter } from 'react-router-dom';
 
 class ProfileEdit extends React.Component {
   state = {
