@@ -1,9 +1,9 @@
 import React from "react";
 import { getHomeList, getMovieInfo } from "../services/moviesApi";
-import { MovieList } from "./MovieList";
+import MovieList from "./MovieList";
 import { Footer } from "./Footer";
-import { Header } from "./Header";
-import { FeatureMovie } from "./FeatureMovie";
+import Header from "./Header";
+import FeatureMovie from "./FeatureMovie";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
 
