@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { readUser } from '../services/userApi';
 import profileImageInitial from '../assets/profileImage.png';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
+import { withRouter } from 'react-router-dom';
 
 function Profile({history}) {
   const setBack = () => history.push('/home');
@@ -35,4 +36,4 @@ Profile.propTypes =  {
   }))
 }
 
-export default Profile;
+export default withRouter(Profile);

@@ -1,63 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { readUser, saveUser } from '../services/userApi';
 import profile from '../assets/profileImage.png';
 import PropTypes from 'prop-types';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
+import { withRouter } from 'react-router-dom';
 
-class ProfileEdit extends React.Component {
-  state = {
-    user: {},
-    profileImage: '',
-  }
+function ProfileEdit({history}) {
+  const [user, setUser] = useState({});
+  const [profileImage, setProfileImage] = useState('');
 
-  componentDidMount() {
-    this.getUserState();
-  }
+  useEffect(() => {
+    const getUserState = () => {
+      const updateUser = readUser();
+      setUser(updateUser);
+    };
+    getUserState();
+  }, []);
 
-  onInputChange = ({ target: { value } }) => this.setState({ profileImage: value });
+  const onInputChange = ({ target: { value } }) => setProfileImage(value);
 
-  getUserState = () => {
-    const updateUser = readUser();
-    this.setState({ user: updateUser });
-  };
+  const setBack = () => history.push('/profile');
 
-  setBack = () => {
-    this.props.history.push('/profile');
-    document.location.reload(true);
-  };
-
-  saveProfile = () => {
-    const { user, profileImage } = this.state;
+  const saveProfile = () => {
     saveUser({ name: user.name, endEmail: user.endEmail, profile: profileImage });
-    this.props.history.push('/home');
-    document.location.reload(true);
+    history.push('/home');
   }
 
-  render() {
-    const { user, profileImage } = this.state;
-    const userProfileImageStorage = <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[100px] h-[100px]" />
-    const userProfileImageNoStorage = <img src={profileImage.length <= 3 ? profile : profileImage} alt="imagem de perfil" className="w-[100px] h-[100px]" />
-    return(
-      <>
-        <div className="text-zinc-100 flex justify-center mt-[15%]">
-          <div className="flex">
-            {!user.profile ? userProfileImageNoStorage : userProfileImageStorage}
-            <div className="flex flex-col gap-2 ml-4">
-              <p>{`Nome de Usuário: ${user.name}`}</p>
-              <p>{`Endereço de Email: ${user.endEmail}`}</p>
-              <input type="text" onChange={ this.onInputChange } placeholder="cole o link da sua imagem de perfil" className="p-1 text-zinc-800" />
-            </div>
+  const userProfileImageStorage = <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[100px] h-[100px]" />
+  const userProfileImageNoStorage = <img src={profileImage.length <= 3 ? profile : profileImage} alt="imagem de perfil" className="w-[100px] h-[100px]" />
+  return(
+    <>
+      <div className="text-zinc-100 flex justify-center mt-[15%]">
+        <div className="flex">
+          {!user.profile ? userProfileImageNoStorage : userProfileImageStorage}
+          <div className="flex flex-col gap-2 ml-4">
+            <p>{`Nome de Usuário: ${user.name}`}</p>
+            <p>{`Endereço de Email: ${user.endEmail}`}</p>
+            <input type="text" onChange={ onInputChange } placeholder="cole o link da sua imagem de perfil" className="p-1 text-zinc-800" />
           </div>
         </div>
-        <div className="text-zinc-100 text-center flex items-center justify-center gap-3 m-5">
-          <ArrowLeft size={15} className="animate-pulse" />
-          <button type="submit" onClick={ this.setBack }>Voltar</button>
-          <button type="submit" onClick={ this.saveProfile }>Salvar Perfil</button>
-          <ArrowRight size={15} className="animate-pulse" />
-        </div>
-      </>
-    );
-  }
+      </div>
+      <div className="text-zinc-100 text-center flex items-center justify-center gap-3 m-5">
+        <ArrowLeft size={15} className="animate-pulse" />
+        <button type="submit" onClick={ setBack }>Voltar</button>
+        <button type="submit" onClick={ saveProfile }>Salvar Perfil</button>
+        <ArrowRight size={15} className="animate-pulse" />
+      </div>
+    </>
+  );
 }
 
 ProfileEdit.propTypes =  {
@@ -66,4 +56,4 @@ ProfileEdit.propTypes =  {
   }))
 }
 
-export default ProfileEdit;
+export default withRouter(ProfileEdit);

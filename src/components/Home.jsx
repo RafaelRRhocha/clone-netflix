@@ -6,69 +6,65 @@ import Header from "./Header";
 import FeatureMovie from "./FeatureMovie";
 import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
+import { useState } from "react";
+import { useEffect } from "react";
+import { withRouter } from "react-router-dom";
 
-class Home extends React.Component {
-  state = {
-    movies: [],
-    bgHeader: false,
-    feature: null,
-    loading: false,
-  };
+function Home() {
+  const [movies, setMovies] = useState([]);
+  const [bgHeader, setBgHeader] = useState(false);
+  const [feature, setFeature] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  componentDidMount() {
-    this.loadAll();
-    this.setLoading();
-    window.addEventListener('scroll', () => {
-      if(window.scrollY >= 10) { this.setState({bgHeader: true}) }
-      if(window.scrollY < 10) { this.setState({bgHeader: false}) }
-    })
-  }
+  useEffect(() => {
+    changeBg();
+    loadAll();
+    setLoadingMovies();
+  }, []);
 
-  setLoading = async () => {
-    this.setState({loading: true});
+  const changeBg = () => window.addEventListener('scroll', () => {
+    if(window.scrollY >= 10) { setBgHeader(true) }
+    if(window.scrollY < 10) { setBgHeader(false) }
+  });
+
+  const setLoadingMovies = async () => {
+    setLoading(true);
     await getHomeList();
-    this.setState({loading: false});
+    setLoading(false);
   };
 
-  loadAll = async () => {
+  const loadAll = async () => {
     let list = await getHomeList();
     let featureFilter = list.filter((item) => item.slug === 'trending');
     let randomFeatureMovie = Math.floor(Math.random() * (featureFilter[0].items.results.length - 1));
     let chosenMovie = featureFilter[0].items.results[randomFeatureMovie];
     let finalChosenMoviesWithAllInfos = await getMovieInfo(chosenMovie.id, 'tv');
-    this.setState({ movies: list, feature: finalChosenMoviesWithAllInfos });
+    setMovies(list);
+    setFeature(finalChosenMoviesWithAllInfos);
   }
 
-  viewProfile = () => {
-    this.props.history.push('/profile');
-    document.location.reload(true);
-  };
-
-  render() {
-    const { movies, bgHeader, feature, loading } = this.state;
-    return (
-      <>
-        {loading ? <Loading /> : (
-          <>
-            <div>
-              <Header bgHeader={bgHeader} viewProfile={ this.viewProfile } />
-            </div>
-            <div>
-                {feature && <FeatureMovie feature={feature} />}
-                <div className="text-zinc-100">
-                  {movies.map((movies, i) => (
-                    <MovieList key={i} title={movies.title} items={movies.items}/>
-                  ))}
-                </div>
-            </div>
-            <div>
-              <Footer />
-            </div>
-          </>
-        )}
-      </>
-    )
-  }
+  return (
+    <>
+      {loading ? <Loading /> : (
+        <>
+          <div>
+            <Header bgHeader={bgHeader} />
+          </div>
+          <div>
+              {feature && <FeatureMovie feature={feature} />}
+              <div className="text-zinc-100">
+                {movies.map((movies, i) => (
+                  <MovieList key={i} title={movies.title} items={movies.items}/>
+                ))}
+              </div>
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </>
+      )}
+    </>
+  )
 }
 
 Home.propTypes =  {
@@ -77,4 +73,4 @@ Home.propTypes =  {
   }))
 }
 
-export default Home;
+export default withRouter(Home);

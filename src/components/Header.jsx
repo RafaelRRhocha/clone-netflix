@@ -5,10 +5,13 @@ import profile from '../assets/profileImage.png';
 import '../css/Main.css';
 import { MagnifyingGlass } from "phosphor-react";
 import { readUser } from "../services/userApi";
+import { withRouter } from "react-router-dom";
 
-function Header({ bgHeader, viewProfile }) {
+function Header({ bgHeader, history }) {
 
   const tecMain = () => alert('Em Manutenção!');
+
+  const viewProfile = () => history.push('/profile');
 
   const user = readUser();
   const allClass = "fixed z-50 top-0 left-0 right-0 h-[70px] flex justify-between";
@@ -30,10 +33,13 @@ function Header({ bgHeader, viewProfile }) {
   )
 }
 
-Header.propTypes =  {
-  name: PropTypes.string.isRequired,
+Header.propTypes = {
   bgHeader: PropTypes.bool.isRequired,
-  viewProfile: PropTypes.func.isRequired,
-};
+  history: PropTypes.shape({
+    push: PropTypes.func
+  }),
+  name: PropTypes.string.isRequired,
+  viewProfile: PropTypes.func.isRequired
+}
 
-export default Header;
+export default withRouter(Header);
