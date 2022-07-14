@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import { readUser } from '../services/userApi';
 import profileImageInitial from '../assets/profileImage.png';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
+import { Link } from 'react-router-dom';
 
-function Profile({history}) {
-  const setBack = () => history.push('/home');
-
-  const setProfileEdit = () => history.push('/profile/edit');
-
+function Profile() {
   const user = readUser();
   return(
     <>
@@ -21,8 +18,12 @@ function Profile({history}) {
       </div>
       <form className="text-zinc-100 text-center flex items-center justify-center gap-3 m-5">
         <ArrowLeft size={15} className="animate-pulse" />
-        <button type="submit" onClick={ setBack }>Voltar</button>
-        <button type="submit" onClick={ setProfileEdit }>Editar Perfil</button>
+        <Link to="/home">
+          <button type="submit">Voltar</button>
+        </Link>
+        <Link to="/profile/edit">
+          <button type="submit">Editar Perfil</button>
+        </Link>
         <ArrowRight size={15} className="animate-pulse" />
       </form>
     </>

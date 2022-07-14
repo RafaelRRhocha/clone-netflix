@@ -3,8 +3,9 @@ import { readUser, saveUser } from '../services/userApi';
 import profile from '../assets/profileImage.png';
 import PropTypes from 'prop-types';
 import { ArrowLeft, ArrowRight } from 'phosphor-react';
+import { Link } from 'react-router-dom';
 
-function ProfileEdit({history}) {
+function ProfileEdit() {
   const [user, setUser] = useState({});
   const [profileImage, setProfileImage] = useState('');
 
@@ -18,12 +19,7 @@ function ProfileEdit({history}) {
 
   const onInputChange = ({ target: { value } }) => setProfileImage(value);
 
-  const setBack = () => history.push('/profile');
-
-  const saveProfile = () => {
-    saveUser({ name: user.name, endEmail: user.endEmail, profile: profileImage });
-    history.push('/home');
-  }
+  const saveProfile = () => saveUser({ name: user.name, endEmail: user.endEmail, profile: profileImage });
 
   const userProfileImageStorage = <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[100px] h-[100px]" />
   const userProfileImageNoStorage = <img src={profileImage.length <= 3 ? profile : profileImage} alt="imagem de perfil" className="w-[100px] h-[100px]" />
@@ -41,8 +37,12 @@ function ProfileEdit({history}) {
       </div>
       <div className="text-zinc-100 text-center flex items-center justify-center gap-3 m-5">
         <ArrowLeft size={15} className="animate-pulse" />
-        <button type="submit" onClick={ setBack }>Voltar</button>
-        <button type="submit" onClick={ saveProfile }>Salvar Perfil</button>
+        <Link to="/profile">
+          <button type="submit">Voltar</button>
+        </Link>
+        <Link to="/home">
+          <button type="submit" onClick={ saveProfile }>Salvar Perfil</button>
+        </Link>
         <ArrowRight size={15} className="animate-pulse" />
       </div>
     </>

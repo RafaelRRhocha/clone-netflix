@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import '../css/Main.css';
 import logo from '../assets/netflix-icon.svg';
 import { saveUser } from "../services/userApi";
+import { Link } from "react-router-dom";
 
-function Login({ history }) {
+function Login() {
   const [login, setLogin] = useState({
     name: '',
     endEmail: '',
@@ -13,10 +14,7 @@ function Login({ history }) {
 
   const onInputChange = ({target: { name, value }}) => setLogin((prevState) => ({...prevState, [name]: value}));
 
-  const handlePage = () => {
-    saveUser({ name, endEmail });
-    history.push('/home');
-  };
+  const saveUserFunc = () => saveUser({ name, endEmail });
 
   return (
     <div className="login-page">
@@ -33,7 +31,9 @@ function Login({ history }) {
         <form className="flex flex-col gap-3">
           <input type="text" name='name' value={ name } onChange={onInputChange} placeholder="Digite o Seu Usuário" className="bg-zinc-200 w-[450px] h-[50px] p-4 text-zinc-700" />
           <input type="text" name='endEmail' value={ endEmail } onChange={onInputChange} placeholder="Se ainda não tiver um Usuário Coloque o seu Email aqui" className="bg-zinc-200 h-[50px] p-4 text-zinc-700" />
-          <button type="submit" onClick={ handlePage } disabled={ name.length < 3 } className="flex justify-center items-center m-auto border border-1 border-neutral-900 w-[75px] h-[40px] text-zinc-200 bg-red-600 hover:bg-red-600 hover:text-zinc-800 hover:cursor-pointer disabled:opacity-50 disabled:hover:bg-red-600 disabled:hover:text-zinc-200">Entrar</button>
+          <Link to="/home">
+            <button type="submit" onClick={ saveUserFunc } disabled={ name.length < 3 } className="flex justify-center items-center m-auto border border-1 border-neutral-900 w-[75px] h-[40px] text-zinc-200 bg-red-600 hover:bg-red-600 hover:text-zinc-800 hover:cursor-pointer disabled:opacity-50 disabled:hover:bg-red-600 disabled:hover:text-zinc-200">Entrar</button>
+          </Link>
         </form>
       </div>
     </div>
