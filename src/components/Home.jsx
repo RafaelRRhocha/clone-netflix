@@ -8,7 +8,6 @@ import { Loading } from "./Loading";
 import PropTypes from 'prop-types';
 import { useState } from "react";
 import { useEffect } from "react";
-import { withRouter } from "react-router-dom";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -73,4 +72,4 @@ Home.propTypes =  {
   }))
 }
 
-export default withRouter(Home);
+export default Home;
