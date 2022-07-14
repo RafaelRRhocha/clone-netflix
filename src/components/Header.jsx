@@ -5,9 +5,11 @@ import profile from '../assets/profileImage.png';
 import '../css/Main.css';
 import { MagnifyingGlass } from "phosphor-react";
 import { readUser } from "../services/userApi";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 function Header({ bgHeader }) {
+  const [redirect, setRedirect] = useState(false);
 
   const tecMain = () => alert('Em Manutenção!');
 
@@ -16,6 +18,7 @@ function Header({ bgHeader }) {
   const allClassWithBg = "fixed z-50 top-0 left-0 right-0 h-[70px] flex justify-between changeBg";
   return (
     <header className={!bgHeader ? allClass : allClassWithBg}>
+      {redirect && <Redirect to="/profile"/>}
       <img src={logo} alt="imagem de perfil" className="ml-[30px]"/>
       {bgHeader && (
         <div className="flex gap-2 items-center">
@@ -23,11 +26,9 @@ function Header({ bgHeader }) {
           <MagnifyingGlass size={20} onClick={ tecMain } className="hover:cursor-pointer text-zinc-100"/>
         </div>
       )}
-      <div className="flex gap-4 items-center mr-[40px]">
-        <Link to="/profile">
-            <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[45px] h-[45px] rounded-sm hover:cursor-pointer" />
-            {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{user.name}</p>}
-        </Link>
+      <div onClick={() => setRedirect(true)} className="flex gap-4 items-center mr-[40px]">
+        <img src={!user.profile ? profile : user.profile} alt="imagem de perfil" className="w-[45px] h-[45px] rounded-sm hover:cursor-pointer" />
+        {bgHeader && <p className="underline decoration-1 hover:cursor-pointer text-zinc-100">{user.name}</p>}
       </div>
   </header>
   )
